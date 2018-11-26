@@ -33,3 +33,4 @@ VOLUME /var/lib/mail /etc/ssl/dovecot /run/dovecot
 EXPOSE 24 110 143 993 995 4190
 
 CMD dovecot -F
+

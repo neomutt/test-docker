@@ -88,6 +88,14 @@ Again, it is possible to make a quick check while with the telnet open:
 a login fulano secret
 ```
 
+And list all folders
+
+```sh
+a1 list "" *
+```
+
+See a full list of raw IMAP commands [here](https://donsutherland.org/crib/imap).
+
 ### Cleaning up
 
 The generated images are kept in a hidden place by docker. You can list them doing the following:

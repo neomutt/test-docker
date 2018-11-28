@@ -75,3 +75,42 @@ Connected to localhost.
 Escape character is '^]'.
 * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN AUTH=LOGIN] Dovecot ready.
 ```
+
+Three users are available in the container:
+
+- `fulano` with password `secret`
+- `cicrano` with password `unknown`
+- `beltrano` with passord `puzzle`
+
+Again, it is possible to make a quick check while with the telnet open:
+
+```sh
+a login fulano secret
+```
+
+### Cleaning up
+
+The generated images are kept in a hidden place by docker. You can list them doing the following:
+
+```sh
+$ docker images
+```
+
+Removing an image is as easy as
+
+```sh
+$ docker rmi <name or hash of the image>
+```
+
+However, no container that was created based on that image should exist. To list all the containers in your machine:
+
+```sh
+$ docker ps --all
+```
+
+And, to remove a container:
+
+```sh
+$ docker rm <name or hash of the container>
+```
+

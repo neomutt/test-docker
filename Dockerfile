@@ -21,6 +21,10 @@ ADD dovecot.conf /etc/dovecot/dovecot.conf
 
 RUN install -m 640 -o dovecot -g mail /dev/null /etc/dovecot/users
 
+RUN adduser -D -u 1000 fulano && echo 'fulano:secret' | chpasswd
+RUN adduser -D -u 1001 beltrano && echo 'beltrano:puzzle' | chpasswd
+RUN adduser -D -u 1001 cicrano && echo 'cicrano:unknown' | chpasswd
+
 # Mail storage directory, TLS key directory & Dovecot socket directory
 VOLUME /var/lib/mail /etc/ssl/dovecot /run/dovecot
 

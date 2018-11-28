@@ -1,0 +1,10 @@
+set imap_user=fulano
+set imap_pass=secret
+set folder=imap://localhost/
+
+set sendmail="/usr/bin/Postfix"
+
+set spoolfile=+INBOX
+set postponed=+drafts
+
+set sidebar_visible = yes

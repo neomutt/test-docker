@@ -1,5 +1,5 @@
 ## must be executed from test-docker folder
-## the image "dovecot-container" should be available as well.
+## the image "dovecot-img" should be available as well.
 
 mkdir -p homefs
 

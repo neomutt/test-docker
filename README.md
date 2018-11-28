@@ -122,3 +122,6 @@ And, to remove a container:
 $ docker rm <name or hash of the container>
 ```
 
+### Extra tools
+
+The script `run-container.sh` will create a folder named as `homefs` and than create a container where that folder is used as `\home`. Once the container server is stopd, the container itself will be auto-removed (`--rm`), however all the changes in the homefs will be kept.

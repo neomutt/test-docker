@@ -69,7 +69,7 @@ Telnet is the easier way to get a quick check using the dovecot server you
 just created
 
 ```sh
-$ telnet localhost 143
+telnet localhost 143
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is '^]'.
@@ -78,9 +78,11 @@ Escape character is '^]'.
 
 Three users are available in the container:
 
-- `fulano` with password `secret`
-- `cicrano` with password `unknown`
-- `beltrano` with passord `puzzle`
+| User       | Password  |
+| :--------- | :-------- |
+| `fulano`   | `secret`  |
+| `cicrano`  | `unknown` |
+| `beltrano` | `puzzle`  |
 
 Again, it is possible to make a quick check while with the telnet open:
 
@@ -101,33 +103,38 @@ See a full list of raw IMAP commands [here](https://donsutherland.org/crib/imap)
 The generated images are kept in a hidden place by docker. You can list them doing the following:
 
 ```sh
-$ docker images
+docker images
 ```
 
 Removing an image is as easy as
 
 ```sh
-$ docker rmi <name or hash of the image>
+docker rmi <name or hash of the image>
 ```
 
 However, no container that was created based on that image should exist. To list all the containers in your machine:
 
 ```sh
-$ docker ps --all
+docker ps --all
 ```
 
 And, to remove a container:
 
 ```sh
-$ docker rm <name or hash of the container>
+docker rm <name or hash of the container>
 ```
 
 ### Extra tools
 
-The script `run-container.sh` will create a folder named as `homefs` and than create a container where that folder is used as `\home`. Once the container server is stopd, the container itself will be auto-removed (`--rm`), however all the changes in the homefs will be kept.
+The script `run-container.sh` will create a folder named as `homefs` and than create a container where that folder is used as `\home`. Once the container server is stopped, the container itself will be auto-removed (`--rm`), however all the changes in the homefs will be kept.
 
-Important: related to selinux, docker manual adivises to use the following when sharing folders between host and container as in this script (adjusted to our case).
+**Notes**:  To make `homefs` read/writable to the Docker you may also have to:
 
-```sh
-$ chcon -Rt svirt_sandbox_file_t homefs
-```
+- Add 'write' file permissions to everything.
+  `chmod -R og+rwX homefs`
+  All the files/dirs will appear in the Docker as owned by **your** user id.
+
+- Set the SELinux permissions on the dirs/files
+  `chcon -Rt svirt_sandbox_file_t homefs`
+  (For security, Docker isn't allowed to read from a user's home dir).
+
